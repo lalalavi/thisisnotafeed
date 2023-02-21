@@ -47,9 +47,11 @@ function validFollowers(str) {
     return ((num>=0 && num<= 1000000000000) || (str=='x' || str=='X'));
 }
 
-const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
 const likertScale = [ 'Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'];
 const likertValues = [1,2,3,4,5];
+const ciusScale = [ 'Never', 'Seldom', 'Sometimes', 'Often', 'Very often'];
+const ciusValues = [1,2,3,4,5];
+
 const bisScale = [ 'Rarely/Never', 'Occasionally', 'Often', 'Almost Always/Always'];
 const bisValues = [1,2,3,4]; 
 const warningAutocomplete = 'Please select one item from the list';
@@ -58,9 +60,10 @@ const warningAge = 'Please provide a valid answer (number from 18 to 105)';
 const warningNum = 'Please provide a valid answer (number from 0 to 1200)';
 const warningFollowers = 'Please provide a valid answer (number or x)';
 
-
+const ciusLimits = ['Never','Very often'];
 const likertLimits = ['Strongly Disagree','Strongly Agree'];
 const bisLimits = [ 'Rarely/Never', 'Almost Always/Always'];
+const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
 
 // const figValues = [1,2,3];
 // const figLabels1 = [
@@ -194,6 +197,35 @@ const firstQuestions = [
 
 // Add questionnaire questions in different orders
 
+const IAS = [ 
+    {
+    question: "In general, I am a shy person.",
+    name: "IAS1",
+    type: "radio",
+    values: [1,2,3,4,5],
+    labels: ['Not at all characteristic of me', 'A little bit characteristic of me', 'Somewhat characteristic of me', 
+    'Very much characteristic of me', 'Extremely characteristic of me']
+    },
+    {
+    question: "I often feel nervous even in casual get- togethers.",
+    name: "IAS2",
+    type: "radio",
+    values: [1,2,3,4,5],
+    labels: ['Not at all characteristic of me', 'A little bit characteristic of me', 'Somewhat characteristic of me', 
+    'Very much characteristic of me', 'Extremely characteristic of me']
+    },
+    {
+    question: "I wish I had more confidence in social situations.",
+    name: "IAS3",
+    type: "radio",
+    values: [1,2,3,4,5],
+    labels: ['Not at all characteristic of me', 'A little bit characteristic of me', 'Somewhat characteristic of me', 
+    'Very much characteristic of me', 'Extremely characteristic of me']
+    },
+]
+
+
+
 const SMD = [ 
     {
     question: "During the past year, have you regularly found that you can't think of anything else but the moment that you will be able to use social media again?",
@@ -267,153 +299,68 @@ const SMD = [
 
 const shuffleQuestions = [ 
     {
-        question: "I plan tasks carefully.",
-        name: "BIS1",
+        question: "How often do you find it difficult to stop using social media when you are online?",
+        name: "CIUS1",
         type: "scale",
     },
     {
-        question: "I do things without thinking.",
-        name: "BIS2",
+        question: "How often do you continue to use social media despite your intention to stop? Do others (e.g. partner, children, parents) say you should use social media less?",
+        name: "CIUS2",
         type: "scale",
     },
     {
-        question: "I make-up my mind quickly.",
-        name: "BIS3",
+        question: "How often do you neglect your daily obligations (work, school, or family life) because you prefer to go on social media?",
+        name: "CIUS3",
         type: "scale",
     },
     {
-        question: "I am happy-go-lucky.",
-        name: "BIS4",
+        question: "How often are you short on sleep because of social media?",
+        name: "CIUS4",
         type: "scale",
     },
     {
-        question: "I don't «pay attention».",
-        name: "BIS5",
+        question: "How often do you rush through your (home) work in order to go on social media?",
+        name: "CIUS5",
         type: "scale",
     },
     {
-        question: "I have «racing» thoughts.",
-        name: "BIS6",
+        question: "How often do you prefer to use social media instead of spending time with others (e.g. partner, children, parents)?",
+        name: "CIUS6",
         type: "scale",
     },
     {
-        question: "I plan trips well ahead of time.",
-        name: "BIS7",
+        question: "How often do you think you should use social media less often?",
+        name: "CIUS7",
         type: "scale",
     },
     {
-        question: "I am self controlled.",
-        name: "BIS8",
+        question: "How often do you think about social media, even when not online?",
+        name: "CIUS8",
         type: "scale",
     },
     {
-        question: "I concentrate easily.",
-        name: "BIS9",
+        question: "How often have you unsuccessfully tried to spend less time on social media?",
+        name: "CIUS9",
         type: "scale",
     },
     {
-        question: "I save regularly.",
-        name: "BIS10",
+        question: "How often do you feel restless, frustrated, or irritated when you cannot use social media?",
+        name: "CIUS10",
         type: "scale",
     },
     {
-        question: "I «squirm» at plays or lectures.",
-        name: "BIS11",
+        question: "How often do you go on social media when you are feeling down?",
+        name: "CIUS11",
         type: "scale",
     },
     {
-        question: "I am a careful thinker.",
-        name: "BIS12",
+        question: "How often do you use social media to escape from your sorrows or get relief from negative feelings?",
+        name: "CIUS12",
         type: "scale",
     },
     {
-        question: "I plan for job security.",
-        name: "BIS13",
-        type: "scale",
-    },
-    {
-        question: "I say things without thinking.",
-        name: "BIS14",
-        type: "scale",
-    },
-    {
-        question: "I like to think about complex problems.",
-        name: "BIS15",
-        type: "scale",
-    },
-    {
-        question: "I change jobs.",
-        name: "BIS16",
-        type: "scale",
-    },
-    {
-        question: "I act «on impulse».",
-        name: "BIS17",
-        type: "scale",
-    },
-    {
-        question: "I get easily bored when solving thought problems.",
-        name: "BIS18",
-        type: "scale",
-    },
-    {
-        question: "I act on the spur of the moment.",
-        name: "BIS19",
-        type: "scale",
-    },
-    {
-        question: "I am a steady thinker.",
-        name: "BIS20",
-        type: "scale",
-    },
-    {
-        question: "I change residences.",
-        name: "BIS21",
-        type: "scale",
-    },
-    {
-        question: "I buy things on impulse.",
-        name: "BIS22",
-        type: "scale",
-    },
-    {
-        question: "I can only think about one thing at a time.",
-        name: "BIS23",
-        type: "scale",
-    },
-    {
-        question: "I change hobbies.",
-        name: "BIS24",
-        type: "scale",
-    },
-    {
-        question: "I spend or charge more than I earn.",
-        name: "BIS25",
-        type: "scale",
-    },
-    {
-        question: "I often have extraneous thoughts when thinking.",
-        name: "BIS26",
-        type: "scale",
-    },
-    {
-        question: "I am more interested in the present than the future",
-        name: "BIS27",
-        type: "scale",
-    },
-    {
-        question: "I am restless at the theater or lectures.",
-        name: "BIS28",
-        type: "scale",
-    },
-    {
-        question: "I like puzzles.",
-        name: "BIS29",
-        type: "scale",
-    },
-    {
-        question: "I am future oriented.",
-        name: "BIS30",
+        question: "How often do you look forward to you going on social media soon?",
+        name: "CIUS13",
         type: "scale",
     },
     {
@@ -428,6 +375,160 @@ const shuffleQuestions = [
     },    
 ];
   
+// Previous stuff for the BIS
+
+// {
+    //     question: "I plan tasks carefully.",
+    //     name: "BIS1",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I do things without thinking.",
+    //     name: "BIS2",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I make-up my mind quickly.",
+    //     name: "BIS3",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am happy-go-lucky.",
+    //     name: "BIS4",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I don't «pay attention».",
+    //     name: "BIS5",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I have «racing» thoughts.",
+    //     name: "BIS6",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I plan trips well ahead of time.",
+    //     name: "BIS7",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am self controlled.",
+    //     name: "BIS8",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I concentrate easily.",
+    //     name: "BIS9",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I save regularly.",
+    //     name: "BIS10",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I «squirm» at plays or lectures.",
+    //     name: "BIS11",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am a careful thinker.",
+    //     name: "BIS12",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I plan for job security.",
+    //     name: "BIS13",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I say things without thinking.",
+    //     name: "BIS14",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I like to think about complex problems.",
+    //     name: "BIS15",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I change jobs.",
+    //     name: "BIS16",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I act «on impulse».",
+    //     name: "BIS17",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I get easily bored when solving thought problems.",
+    //     name: "BIS18",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I act on the spur of the moment.",
+    //     name: "BIS19",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am a steady thinker.",
+    //     name: "BIS20",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I change residences.",
+    //     name: "BIS21",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I buy things on impulse.",
+    //     name: "BIS22",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I can only think about one thing at a time.",
+    //     name: "BIS23",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I change hobbies.",
+    //     name: "BIS24",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I spend or charge more than I earn.",
+    //     name: "BIS25",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I often have extraneous thoughts when thinking.",
+    //     name: "BIS26",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am more interested in the present than the future",
+    //     name: "BIS27",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am restless at the theater or lectures.",
+    //     name: "BIS28",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I like puzzles.",
+    //     name: "BIS29",
+    //     type: "scale",
+    // },
+    // {
+    //     question: "I am future oriented.",
+    //     name: "BIS30",
+    //     type: "scale",
+    // },
+
+
 
 // *********************************************************************
 // YOU DO NOT NEED TO MODIFY ANYTHING BELOW THIS POINT. 
@@ -436,7 +537,7 @@ const shuffleQuestions = [
 // Dynamic variables
 var slideIndex = 0;
 // Constants and Scales
-const myQuestions = firstQuestions.concat(shuffleArray(shuffleQuestions), shuffleArray(SMD)); // This might not work
+const myQuestions = firstQuestions.concat(shuffleArray(shuffleQuestions), shuffleArray(IAS)); // This might not work
 const maxQ  = myQuestions.length;
 const height = 70;
 const width = 80;
@@ -642,8 +743,8 @@ function writeRadio(Question) {
     let values = [];
     let labels = [];
     if (typeof Question.values === 'undefined' || Question.values === null) {
-        values =bisValues;
-        labels =bisScale;
+        values = ciusValues; //previously bisValues
+        labels = ciusScale; // previously bisScale
     } else {
         values = Question.values
         // Check if labels for the values exist
@@ -694,10 +795,10 @@ function writeScale(Question) {
     let values = [];
     let limits = [];
     if (typeof Question.values === 'undefined' || Question.values === null) {
-        values =bisValues;
-        limits =bisLimits; 
+        values = ciusValues; //previously ciusValues
+        limits = ciusLimits; 
     } else {
-        values = Question.values
+        values = Question.values;
         limits = Question.limits; 
     };
     // Create input container

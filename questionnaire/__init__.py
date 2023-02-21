@@ -36,49 +36,25 @@ class Player(BasePlayer):
     D15 = models.StringField()
 
 
-    # Variables for Social Media Disorder scale
-    SMD1 = models.StringField()
-    SMD2 = models.StringField()
-    SMD3 = models.StringField()
-    SMD4 = models.StringField()
-    SMD5 = models.StringField()
-    SMD5 = models.StringField()
-    SMD6 = models.StringField()
-    SMD7 = models.StringField()
-    SMD8 = models.StringField()
-    SMD9 = models.StringField()
+    # Variables for IAS scale
+    IAS1 = models.StringField()
+    IAS2 = models.StringField()
+    IAS3 = models.StringField()
  
-    # Variables for BIS questionnaire
-    BIS1 = models.StringField()
-    BIS2 = models.StringField()
-    BIS3 = models.StringField()
-    BIS4 = models.StringField()
-    BIS5 = models.StringField()
-    BIS6 = models.StringField()
-    BIS7 = models.StringField()
-    BIS8 = models.StringField()
-    BIS9 = models.StringField()
-    BIS10 = models.StringField()
-    BIS11 = models.StringField()
-    BIS12 = models.StringField()
-    BIS13 = models.StringField()
-    BIS14 = models.StringField()
-    BIS15 = models.StringField()
-    BIS16 = models.StringField()
-    BIS17 = models.StringField()
-    BIS18 = models.StringField()
-    BIS19 = models.StringField()
-    BIS20 = models.StringField()
-    BIS21 = models.StringField()
-    BIS22 = models.StringField()
-    BIS23 = models.StringField()
-    BIS24 = models.StringField()
-    BIS25 = models.StringField()
-    BIS26 = models.StringField()
-    BIS27 = models.StringField()
-    BIS28 = models.StringField()
-    BIS29 = models.StringField()
-    BIS30 = models.StringField()
+    # Variables for CIUS questionnaire
+    CIUS1 = models.StringField()
+    CIUS2 = models.StringField()
+    CIUS3 = models.StringField()
+    CIUS4 = models.StringField()
+    CIUS5 = models.StringField()
+    CIUS6 = models.StringField()
+    CIUS7 = models.StringField()
+    CIUS8 = models.StringField()
+    CIUS9 = models.StringField()
+    CIUS10 = models.StringField()
+    CIUS11 = models.StringField()
+    CIUS12 = models.StringField()
+    CIUS13 = models.StringField()
 
     # Validation Questions
     V1 = models.StringField()
@@ -90,8 +66,8 @@ class Player(BasePlayer):
 class Questionnaire(Page):
     form_model = 'player'
     form_fields = ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15',
-    'BIS1', 'BIS2', 'BIS3', 'BIS4', 'BIS5', 'BIS6', 'BIS7', 'BIS8', 'BIS9', 'BIS10', 'BIS11', 'BIS12', 'BIS13', 'BIS14', 'BIS15', 'BIS16', 'BIS17', 'BIS18', 'BIS19', 'BIS20', 'BIS21', 'BIS22', 'BIS23', 'BIS24', 'BIS25', 'BIS26', 'BIS27', 'BIS28', 'BIS29', 'BIS30', 
-    'SMD1', 'SMD2', 'SMD3', 'SMD4', 'SMD5', 'SMD6', 'SMD7', 'SMD8', 'SMD9',
+    'CIUS1', 'CIUS2', 'CIUS3', 'CIUS4', 'CIUS5', 'CIUS6', 'CIUS7', 'CIUS8', 'CIUS9', 'CIUS10', 'CIUS11', 'CIUS12', 'CIUS13',
+    'IAS1', 'IAS2', 'IAS3',
     'V1', 'V2', 'V3',
     ]
 
