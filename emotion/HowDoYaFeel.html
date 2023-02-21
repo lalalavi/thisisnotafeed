@@ -1,6 +1,3 @@
-{{ block title }}
-    How would you describe your current emotional status?
-{{ endblock }}
 
 {% block app_styles %}
     <link href="{% static 'global/css/FriendlyChecks.css' %}" rel="stylesheet">
@@ -17,27 +14,28 @@
 <br>
 <head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
 <body>
+  <div id="fullbody" class="centered">
+      <p style="font-size:25px; text-align: center;">How would you describe your current emotional status? </p>
+      <br><br>
+      <p>1 = Extremely negative / 100 = Extremely positive</p>
+      <div class="slidecontainer">
+      <input type="range" min="1" max="100" class="slider" name="iEmotionalStatus" id="iEmotionalStatus">
+      <p>Rating: <span id="iEmotionalStatus_value"></span></p>
+      </div>
 
-  <div id="fullbody">
-    <p>1 = Extremely negative / 100 = Extremely positive</p>
-    <div class="slidecontainer">
-    <input type="range" min="1" max="100" class="slider" name="iEmotionalStatus" id="iEmotionalStatus">
-    <p>Rating: <span id="iEmotionalStatus_value"></span></p>
-    </div>
-
-  <div class="buttons">
-    <button type="button" id="lockrange">Lock value</button>
-    <button type="button" id="submit" onclick="checkRange()">Submit</button>
+      <div class="buttons">
+        <button type="button" id="lockrange">Lock value</button>
+        <button type="button" id="submit" onclick="checkRange()">Submit</button>
   </div>
 </div>
 
 </body>
 
-<script>
+ <script>
 
 const bRequireFS    = js_vars.bRequireFS;
 const bCheckFocus   = js_vars.bCheckFocus;
-const defaultPixel  = js_vars.dPixelRatio;
+const defaultPixel  = js_vars.dPixelRatio; 
 var TBlur           = new Date().getTime();
 var TFocus          = new Date().getTime();
 
@@ -123,16 +121,25 @@ document.addEventListener("DOMContentLoaded", function(debug=true) {
     display:none;
 }
 
+.centered {
+  position: fixed;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 .slidecontainer {
-    width: 70%;  
+    width: 95%;  
 }
 
   .fit {
-      width: 70%;
+      width: 95%;
   }
   
   .slider {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   width: 100%;
   height: 25px;
   background: #d3d3d3;
@@ -171,16 +178,16 @@ document.addEventListener("DOMContentLoaded", function(debug=true) {
   form .buttons {
     margin:30px 0;
     padding:0 4.25%;
-    text-align:right
+    text-align:center
   } 
   form .buttons button {
     padding: 5px 10px;
-    background-color: #67ab49;
+    background-color: #4a8fff;
     border: 0;
     border-radius: 3px;
   }
   
-  form .buttons .btn-primary {background-color: #67ab49;} 
+  form .buttons .btn-primary {background-color: #2f57a7;} 
   form .buttons .btn-primary:hover {background-color: #14892c;}    
 </style>
 

@@ -22,7 +22,6 @@ class Constants(BaseConstants):
             ),        
     ]
 
-
 class Subsession(BaseSubsession):
     pass
 
@@ -37,9 +36,7 @@ class Player(BasePlayer):
     iOutFocus           = models.IntegerField()
     iFSChanges          = models.IntegerField()
 
-
 # PAGES
-
 class FinalPage(Page):
 
     @staticmethod

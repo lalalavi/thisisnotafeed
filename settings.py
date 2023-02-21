@@ -4,8 +4,8 @@ SESSION_CONFIGS = [
     dict(
         name='Full_Experiment',
         display_name="The full thing! :D",
-        num_demo_participants=50, 
-        app_sequence=['instructions', 'simple_experiment', 'questionnaire', 'end'],
+        num_demo_participants=20, 
+        app_sequence=['instructions', 'hr', 'emotion', 'questionnaire', 'end'],
         bRequireFS=True,
         bCheckFocus=True,
         doc="""
@@ -13,14 +13,20 @@ SESSION_CONFIGS = [
         bCheckFocus: bool, require checking if page is active.
         """
         ),
-    # dict(
-    #     name='Beta_Experiment',
-    #     display_name="Only the experiment",
-    #     num_demo_participants=10, 
-    #     app_sequence=['simple_experiment'],
-    #     bRequireFS=True,
-    #     bCheckFocus=True,
-    # ),
+    dict(
+        name='emotion',
+        display_name="emotion stuff",
+        num_demo_participants=20, 
+        app_sequence=['emotion'],
+        ),
+    dict(
+        name='debug_experiment',
+        display_name="debugging that experiment yall",
+        num_demo_participants=10, 
+        app_sequence=['hr'],
+        bRequireFS=False,
+        bCheckFocus=False,
+    ),
     # dict(
     #     name='Beta_Instructions',
     #     display_name="Only the instructions",

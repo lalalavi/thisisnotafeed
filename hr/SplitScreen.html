@@ -67,7 +67,7 @@
         </div>
         <br> <br><br> <br> 
 
-        <img style="width: 250px; position: fixed; margin-top: 15vh;" src="{{ static image_path }}"/>
+        <img style="width: 300px; position: fixed; margin-top: 15vh;" src="{{ static image_path }}"/>
 
         <br><br><br><br><br> <br><br><br><br> <br> <br><br> <br>  <br><br> <br> 
 
@@ -79,13 +79,13 @@
                     </div>
                 </section>
             </section>
-            <section class="message-list" id="emotionaltext" style="float:right">
+            <!-- <section class="message-list" id="emotionaltext" style="float:right">
                 <section class="message -right"  >
                     <div class="nes-balloon from-right">
                     <p><span style="font-size:300%; color:black"> {{ dislikes }} <b style="font-family:Garamond;"> <i class="fa fa-thumbs-down"></i> </b></span></p>
                     </div>
                 </section>
-            </section>
+            </section> -->
         </div>
 
 
@@ -221,12 +221,12 @@ document.addEventListener("DOMContentLoaded", function(debug=false) {
         let c = document.getElementById('baselinetext');
         if (js_vars.treatment=='Control') {
             x.style.visibility = 'hidden';  //for control treatment we don't show amount of dislikes
-        } else if (js_vars.treatment=='Emotional') { 
-            c.style.visibility = 'hidden';  //for emotional treatment we don't show the amount of likes
-        } else {
-            x.style.visibility = 'visible';
-            c.style.visibility = 'visible';
-	}};
+        // } else if (js_vars.treatment=='Emotional') { 
+        //     c.style.visibility = 'hidden';  //for emotional treatment we don't show the amount of likes
+        // } else {
+        //     x.style.visibility = 'visible';
+        //     c.style.visibility = 'visible';
+	    }};
 
     let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
     OtreeBody.appendChild(iFeedLikes);
