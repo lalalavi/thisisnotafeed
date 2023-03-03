@@ -4,15 +4,20 @@
 {% endblock %}
 
 {% block app_scripts %}
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>    <!-- have to keep the jquery here otherwise countdown stops working -->
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="{% static 'global/js/questionnaire.js' %}"></script>
 {% endblock %}
 
 {% load otree static %}
 {% block content %}
 
+
 <div id="final-answers">  </div>
  <!-- Slide container -->
- <div class="element-container">  </div>
+ {{ form.D10.errors }}
+
+<div class="element-container">  </div>
  
  <button class="next_button btn btn-primary btn-large" id="final-button" style="visibility: hidden;" > </button>
 {% endblock %}

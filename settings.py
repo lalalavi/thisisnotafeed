@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
         name='Full_Experiment',
         display_name="The full thing! :D",
         num_demo_participants=20, 
-        app_sequence=['instructions', 'hr', 'emotion', 'questionnaire', 'end'],
+        app_sequence=['instructions', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
         bRequireFS=True,
         bCheckFocus=True,
         doc="""
@@ -17,7 +17,7 @@ SESSION_CONFIGS = [
         name='emotion',
         display_name="emotion stuff",
         num_demo_participants=20, 
-        app_sequence=['emotion'],
+        app_sequence=['emo1'],
         ),
     dict(
         name='debug_experiment',

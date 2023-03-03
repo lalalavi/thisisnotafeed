@@ -1,0 +1,194 @@
+
+{% block app_styles %}
+    <link href="{% static 'global/css/FriendlyChecks.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block app_scripts %}
+<script src="{% static 'global/js/VT_functionality.js' %}"></script> 
+<script src="{% static 'global/js/FriendlyChecks.js' %}"></script> 
+{% endblock %}
+
+{{ block content }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<br>
+<head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body>
+  <div id="fullbody" class="centered">
+      <p style="font-size:25px; text-align: center;">How are you feeling at the moment? </p>
+      <br><br>
+      <p>1 = Extremely negative / 100 = Extremely positive</p>
+      <div class="slidecontainer">
+      <input type="range" min="1" max="100" class="slider" name="iEmotionalStatus" id="iEmotionalStatus">
+      <p>Rating: <span id="iEmotionalStatus_value"></span></p>
+      </div>
+
+      <div class="buttons">
+        <button type="button" id="lockrange">Lock value</button>
+        <button type="button" id="submit" onclick="checkRange()">Submit</button>
+  </div>
+</div>
+
+</body>
+
+ <script>
+
+const bRequireFS    = js_vars.bRequireFS;
+const bCheckFocus   = js_vars.bCheckFocus;
+const defaultPixel  = js_vars.dPixelRatio; 
+var TBlur           = new Date().getTime();
+var TFocus          = new Date().getTime();
+
+let EndButton               = document.createElement('button');
+EndButton.style.visibility  = 'hidden';
+EndButton.className         = 'next_button btn btn-primary btn-large';
+
+let dRT          = document.createElement("input");
+dRT.type         = 'hidden';
+dRT.name         = 'dRTEmotionalStatus';
+dRT.id           = 'dRTEmotionalStatus';
+dRT.value        = '';
+
+var TStart       = new Date().getTime();
+var TEnd         = new Date().getTime();
+
+var rangechanged=false;
+var slider = document.getElementById("iEmotionalStatus");
+var output = document.getElementById("iEmotionalStatus_value");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+function checkRange() {
+  console.log(rangechanged);
+   if(rangechanged==false) {
+     alert("You must lock the range first");
+     event.preventDefault();
+    //  return rangechanged;   //  ?
+    }
+   if(rangechanged==true){
+      EndButton.click();
+    }
+}
+
+$("#lockrange").click(function(){
+  rangechanged=true;
+  $("#lockrange").hide();
+});
+
+$("#iEmotionalStatus").change(function(){
+  rangechanged=true;
+  $("#lockrange").hide();
+});
+
+
+document.addEventListener("DOMContentLoaded", function(debug=true) {
+  console.log('Loading info');
+
+  let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
+  OtreeBody.appendChild(dRT);
+  OtreeBody.appendChild(EndButton);
+  
+  let fullbody = document.getElementById('fullbody');
+  InitializeFriendlyChecks(fullbody, bRequireFS, bCheckFocus);
+
+  function addtoev() {
+  var bns = document.getElementsByTagName("button");
+  for (i = 0; i < bns.length; i++) {
+    bns[i].addEventListener("click", function() {
+    TEnd      = new Date().getTime();
+    dRT.value = +TEnd -TStart;   // end the timer and rewrite the RT value
+    });
+  }} 
+
+  window.addEventListener("load",function() {
+  addtoev();
+  });
+});
+</script>
+
+
+
+<style>
+
+.otree-timer {
+    display: none;
+}
+
+.debug-info {
+    display:none;
+}
+
+.centered {
+  position: fixed;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.slidecontainer {
+    width: 95%;  
+}
+
+  .fit {
+      width: 95%;
+  }
+  
+  .slider {
+  /* -webkit-appearance: none; */
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  }
+  
+  .slider:hover {
+  opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+  }
+  
+  html,body {padding:0;margin:0;}
+  .wrap {
+    font:12px Arial, san-serif;
+    text-align: center;
+  }
+  
+  form .buttons {
+    margin:30px 0;
+    padding:0 4.25%;
+    text-align:center
+  } 
+  form .buttons button {
+    padding: 5px 10px;
+    background-color: #4a8fff;
+    border: 0;
+    border-radius: 3px;
+  }
+  
+  form .buttons .btn-primary {background-color: #2f57a7;} 
+  form .buttons .btn-primary:hover {background-color: #14892c;}    
+</style>
+
+{{ endblock }}

@@ -11,7 +11,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     UvA_logo = 'global/UvA_logo.png'
-    FlatFee = "3 pounds"
+    FlatFee = "[ NEW AMOUNT ]"
 
     ## Slides for introduction
     SlidePath = 'Instructions/slide'

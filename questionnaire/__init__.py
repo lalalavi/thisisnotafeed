@@ -18,6 +18,9 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
+    iEmotionalStatus = models.IntegerField()
+    dRTEmotionalStatus = models.FloatField(blank=True)
+
     # Variables for Demographics
     D1 = models.StringField()
     D2 = models.StringField()
@@ -35,12 +38,11 @@ class Player(BasePlayer):
     D14 = models.StringField()
     D15 = models.StringField()
 
-
     # Variables for IAS scale
     IAS1 = models.StringField()
     IAS2 = models.StringField()
     IAS3 = models.StringField()
- 
+
     # Variables for CIUS questionnaire
     CIUS1 = models.StringField()
     CIUS2 = models.StringField()
@@ -61,8 +63,22 @@ class Player(BasePlayer):
     V2 = models.StringField()
     V3 = models.StringField()
 
-
 # PAGES
+class HowDoYaFeel(Page):
+    form_model = 'player' 
+    form_fields = [
+        'iEmotionalStatus','dRTEmotionalStatus',
+    ]
+
+    @staticmethod
+    def js_vars(player: Player):
+        session = player.session
+        p = player.participant
+        return {
+            'bRequireFS'        : session.config['bRequireFS'],
+            'bCheckFocus'       : session.config['bCheckFocus'],
+            'dPixelRatio'       : p.dPixelRatio,
+        }
 class Questionnaire(Page):
     form_model = 'player'
     form_fields = ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15',
@@ -70,7 +86,6 @@ class Questionnaire(Page):
     'IAS1', 'IAS2', 'IAS3',
     'V1', 'V2', 'V3',
     ]
-
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -80,5 +95,4 @@ class Questionnaire(Page):
         valid3 = int(int(player.V3)==1)
         player.participant.validQuestionnaire = valid1 + valid2 + valid3
 
-
-page_sequence = [Questionnaire]
+page_sequence = [HowDoYaFeel, Questionnaire]
