@@ -16,7 +16,7 @@ doc = """
 """
 
 class Constants(BaseConstants):
-    name_in_url = 'exp1'
+    name_in_url = 'exp2'
     players_per_group = None
     num_rounds = 20
     df = pd.read_excel("_static/global/HR.xlsx",index_col="Numbers")
@@ -44,7 +44,6 @@ class Player(BasePlayer):
     iFeedLikes              = models.IntegerField(blank=True)
     iFeedDislikes           = models.IntegerField(blank=True)
     iPost                   = models.IntegerField(blank=True)       # the meme they choose during posting
-    iEmotionalStatus        = models.IntegerField()
 
     ## Meme information Variables
     iLikes                  = models.IntegerField(blank=True)
@@ -61,7 +60,6 @@ class Player(BasePlayer):
     dRTPost                 = models.FloatField(blank=True) 
     dRTFeedback             = models.FloatField(blank=True)
     dRTLast                 = models.FloatField(blank=True)
-    dRTEmotionalStatus      = models.FloatField(blank=True)
 
 ###################################################################################################
 #  FUNCTION ᕕ(ᐛ)ᕗ
@@ -96,26 +94,6 @@ def creating_session(subsession):
 ###################################################################################################
 #  Pages ᕕ(ᐛ)ᕗ
 ###################################################################################################
-
-class HowDoYaFeel(Page):
-    form_model = 'player' 
-    form_fields = [
-        'iEmotionalStatus','dRTEmotionalStatus',
-    ]
-
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
-    
-    @staticmethod
-    def js_vars(player: Player):
-        session = player.session
-        p = player.participant
-        return {
-            'bRequireFS'        : session.config['bRequireFS'],
-            'bCheckFocus'       : session.config['bCheckFocus'],
-            'dPixelRatio'       : p.dPixelRatio,
-        }
 
 class ready(Page):
     @staticmethod
@@ -156,7 +134,7 @@ class SplitScreen(Page):
 
         participant = player.participant   
 
-        player.sReward = 'HR'
+        player.sReward = 'LR'
 
         # url_list=[] #check if this step is even necessary right now
         url_list = [f'memes/feed{meme}.jpeg' for meme in range(1,410)]  #all memes now
@@ -323,4 +301,4 @@ class Feedback(Page):
 # check out why mouselog function does not work
 # future fade in jquery for likes and dislikes appearing (the talking cloud thingie)
 
-page_sequence = [HowDoYaFeel, ready, SplitScreen, Posting, Feedback]
+page_sequence = [ready, SplitScreen, Posting, Feedback]

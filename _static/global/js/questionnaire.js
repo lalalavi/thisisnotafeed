@@ -32,15 +32,23 @@
 // *********************************************************************
 function validInt(str) {return (!isNaN(parseInt(str)))};
 
-function validAge(str) {
-    num = parseInt(str);
-    return (num>=18 && num<= 105);
+function validAge(input) {
+    const num = Number(input);
+    return !isNaN(num) && (num>=16 && num<= 60);
 }
 
-function validNum(str) {
-    num = parseInt(str);
-    return (num>=0 && num<= 1200);
+function validNum(input) {
+    const num = Number(input);
+    return !isNaN(num) && num >= 0 && num <= 1200;
 }
+
+// there was an error in Alejandro's code because
+// his way of asking for age also allows strings
+
+// function validNum(str) {
+//     num = parseInt(str);
+//     return (num>=0 && num<= 1200);
+// }
 
 function validFollowers(str) {
     num = parseInt(str);
@@ -56,8 +64,8 @@ const bisScale = [ 'Rarely/Never', 'Occasionally', 'Often', 'Almost Always/Alway
 const bisValues = [1,2,3,4]; 
 const warningAutocomplete = 'Please select one item from the list';
 const warningEmpty = 'Please do not leave this question unanswered';
-const warningAge = 'Please provide a valid answer (number from 18 to 105)';
-const warningNum = 'Please provide a valid answer (number from 0 to 1200)';
+const warningAge = 'Please provide a valid answer (number from 16 to 60). Do not include any letters :D';
+const warningNum = 'Please provide a valid answer (number from 0 to 1200). Do not include any letters :D';
 const warningFollowers = 'Please provide a valid answer (number or x)';
 
 const ciusLimits = ['Never','Very often'];
@@ -147,8 +155,8 @@ const firstQuestions = [
     {
         question: "Please provide an estimate of how much time you normally spend on a day inside all social media platforms (in minutes):",
         name: "D10",
-        type: "shortOpen",
-        validate: validNum ,
+        type: "shortOpen",  
+        validate: validNum ,    //This can ONLY be numbers, it can't include strings
         invalidMessage: warningNum,
     }, 
     {
@@ -375,158 +383,6 @@ const shuffleQuestions = [
     },    
 ];
   
-// Previous stuff for the BIS
-
-// {
-    //     question: "I plan tasks carefully.",
-    //     name: "BIS1",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I do things without thinking.",
-    //     name: "BIS2",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I make-up my mind quickly.",
-    //     name: "BIS3",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am happy-go-lucky.",
-    //     name: "BIS4",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I don't «pay attention».",
-    //     name: "BIS5",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I have «racing» thoughts.",
-    //     name: "BIS6",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I plan trips well ahead of time.",
-    //     name: "BIS7",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am self controlled.",
-    //     name: "BIS8",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I concentrate easily.",
-    //     name: "BIS9",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I save regularly.",
-    //     name: "BIS10",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I «squirm» at plays or lectures.",
-    //     name: "BIS11",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am a careful thinker.",
-    //     name: "BIS12",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I plan for job security.",
-    //     name: "BIS13",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I say things without thinking.",
-    //     name: "BIS14",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I like to think about complex problems.",
-    //     name: "BIS15",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I change jobs.",
-    //     name: "BIS16",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I act «on impulse».",
-    //     name: "BIS17",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I get easily bored when solving thought problems.",
-    //     name: "BIS18",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I act on the spur of the moment.",
-    //     name: "BIS19",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am a steady thinker.",
-    //     name: "BIS20",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I change residences.",
-    //     name: "BIS21",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I buy things on impulse.",
-    //     name: "BIS22",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I can only think about one thing at a time.",
-    //     name: "BIS23",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I change hobbies.",
-    //     name: "BIS24",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I spend or charge more than I earn.",
-    //     name: "BIS25",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I often have extraneous thoughts when thinking.",
-    //     name: "BIS26",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am more interested in the present than the future",
-    //     name: "BIS27",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am restless at the theater or lectures.",
-    //     name: "BIS28",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I like puzzles.",
-    //     name: "BIS29",
-    //     type: "scale",
-    // },
-    // {
-    //     question: "I am future oriented.",
-    //     name: "BIS30",
-    //     type: "scale",
-    // },
 
 
 
@@ -536,6 +392,7 @@ const shuffleQuestions = [
 
 // Dynamic variables
 var slideIndex = 0;
+
 // Constants and Scales
 const myQuestions = firstQuestions.concat(shuffleArray(shuffleQuestions), shuffleArray(IAS)); // This might not work
 const maxQ  = myQuestions.length;
