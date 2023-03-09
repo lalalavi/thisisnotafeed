@@ -22,6 +22,8 @@ class Player(BasePlayer):
     dRTEmotionalStatus = models.FloatField(blank=True)
 
     # Variables for Demographics
+    Email = models.StringField()
+
     D1 = models.StringField()
     D2 = models.StringField()
     D3 = models.StringField()
@@ -81,7 +83,7 @@ class HowDoYaFeel(Page):
         }
 class Questionnaire(Page):
     form_model = 'player'
-    form_fields = ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15',
+    form_fields = ['Email','D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15',
     'CIUS1', 'CIUS2', 'CIUS3', 'CIUS4', 'CIUS5', 'CIUS6', 'CIUS7', 'CIUS8', 'CIUS9', 'CIUS10', 'CIUS11', 'CIUS12', 'CIUS13',
     'IAS1', 'IAS2', 'IAS3',
     'V1', 'V2', 'V3',

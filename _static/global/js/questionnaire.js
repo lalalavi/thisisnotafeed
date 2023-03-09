@@ -32,22 +32,31 @@
 // *********************************************************************
 function validInt(str) {return (!isNaN(parseInt(str)))};
 
-function validAge(input) {
-    const num = Number(input);
-    return !isNaN(num) && (num>=16 && num<= 60);
-}
-
 function validNum(input) {
     const num = Number(input);
     return !isNaN(num) && num >= 0 && num <= 1200;
 }
 
-// there was an error in Alejandro's code because
-// his way of asking for age also allows strings
+function validEmail(input) {
+    if (input.trim() === '') {
+      // input is empty, return false
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regular expression, at least one character before @, at least one character between @ and ., at least one character after .
+    return emailRegex.test(input);
+  }
 
-// function validNum(str) {
-//     num = parseInt(str);
-//     return (num>=0 && num<= 1200);
+function validAge(str) {
+    num = parseInt(str);
+    return !isNaN(num) && (num>=16 && num<= 40);
+}
+
+// there was an error in Alejandro's code because
+// his way of asking for age also allows strings.  I kept the error. lol
+
+// function validAge(input) {
+//     const num = Number(input);
+//     return !isNaN(num) && (num>=16 && num<= 40);
 // }
 
 function validFollowers(str) {
@@ -64,26 +73,16 @@ const bisScale = [ 'Rarely/Never', 'Occasionally', 'Often', 'Almost Always/Alway
 const bisValues = [1,2,3,4]; 
 const warningAutocomplete = 'Please select one item from the list';
 const warningEmpty = 'Please do not leave this question unanswered';
-const warningAge = 'Please provide a valid answer (number from 16 to 60). Do not include any letters :D';
+const warningAge = 'Please provide a valid answer (number from 16 to 40). Do not include any letters :D';
 const warningNum = 'Please provide a valid answer (number from 0 to 1200). Do not include any letters :D';
 const warningFollowers = 'Please provide a valid answer (number or x)';
+const warningEmail = 'Please provide a valid email address';
 
 const ciusLimits = ['Never','Very often'];
 const likertLimits = ['Strongly Disagree','Strongly Agree'];
 const bisLimits = [ 'Rarely/Never', 'Almost Always/Always'];
 const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
 
-// const figValues = [1,2,3];
-// const figLabels1 = [
-//     js_vars.Ql,
-//     js_vars.Qcv,
-//     js_vars.Qcx,
-// ];
-// const figLabels2 = [
-//     js_vars.Sl,
-//     js_vars.Scv,
-//     js_vars.Scx,
-// ];
 
 // *********************************************************************
 // Add Your Questions here
@@ -91,10 +90,17 @@ const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeri
 
 const firstQuestions = [
     {
+        question: "Please provide your email for payment:",
+        name: "Email",
+        type: "shortOpen",
+        validate: validEmail,
+        invalidMessage: warningEmail,
+    }, 
+    {
         question: "What is your age?",
         name: "D1",
         type: "shortOpen",
-        validate: validAge ,
+        validate: validAge,
         invalidMessage: warningAge,
     },   
     {
@@ -153,14 +159,14 @@ const firstQuestions = [
         labels: ['Almost Constantly','Several times a day','About once a day','Several times a week', 'Less often', 'Never']
     },
     {
-        question: "Please provide an estimate of how much time you normally spend on a day inside all social media platforms (in minutes):",
+        question: "Please provide an estimate of how much time you normally spend on a day inside all social media platforms:",
         name: "D10",
-        type: "shortOpen",  
-        validate: validNum ,    //This can ONLY be numbers, it can't include strings
-        invalidMessage: warningNum,
+        type: "radio",
+        values: [1,2,3,4,5,6,7,8],
+        labels: ['Less than 1h','1h-2h','2h-3h','3h-4h', '4h-5h', '5h-6h', '6h-7h', 'More than 7h']
     }, 
     {
-        question: "If applicable, how many likes (or similar) do you typically get when you post on social media (e.g. Instagram, Twitter, Facebook, Reddit)?",
+        question: "If applicable, how many likes (or similar) do you typically get when you post on social media (e.g. Instagram, Twitter, Facebook, TikTok)?",
         name: "D11",
         type: "radio",
         values: [1,2,3,4,5,6,7],

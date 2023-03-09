@@ -217,10 +217,10 @@ document.addEventListener("DOMContentLoaded", function(debug=false) {
     InitializeFriendlyChecks(fullbody, bRequireFS, bCheckFocus);
   
     if (js_vars.round_number > 1) {
-        let x = document.getElementById('emotionaltext');
+        // let x = document.getElementById('emotionaltext');
         let c = document.getElementById('baselinetext');
         if (js_vars.treatment=='Control') {
-            x.style.visibility = 'hidden';  //for control treatment we don't show amount of dislikes
+            c.style.visibility = 'visible';  //for control treatment we don't show amount of dislikes
         // } else if (js_vars.treatment=='Emotional') { 
         //     c.style.visibility = 'hidden';  //for emotional treatment we don't show the amount of likes
         // } else {

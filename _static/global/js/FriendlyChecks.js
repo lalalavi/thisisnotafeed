@@ -206,7 +206,10 @@ function CreateFullScreenPopUp(bReqCalibrate=false) {
       PopUpText4.innerHTML          = 'Press ⌘,+ (command, plus to zoom-in) <br> ⌘,- ( command, minus to zoom-out) ';
       break;  
     case 'Windows' :
-      PopUpText2.innerHTML          = 'Press F11'; 
+      PopUpText2.innerHTML          = 'Press F11, or go to settings and press on fullscreen icon';
+      // add this somehow: <i class="material-icons">&#xe5d0;</i> 
+      //  + <i class="material-icons">&#xe5d0;</i> 
+      // https://www.w3schools.com/icons/tryit.asp?filename=tryicons_google-fullscreen
       PopUpText4.innerHTML          = 'Press Ctrl,= (Control, equal to zoom-in) <br> Ctrl,-( Control, minus to zoom-out) '
 
       break;
