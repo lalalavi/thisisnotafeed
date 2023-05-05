@@ -48,7 +48,7 @@ function validEmail(input) {
 
 function validAge(str) {
     num = parseInt(str);
-    return !isNaN(num) && (num>=16 && num<= 40);
+    return !isNaN(num) && (num>=16 && num<= 20) && (num>=30 && num<= 40);
 }
 
 // there was an error in Alejandro's code because
@@ -73,7 +73,7 @@ const bisScale = [ 'Rarely/Never', 'Occasionally', 'Often', 'Almost Always/Alway
 const bisValues = [1,2,3,4]; 
 const warningAutocomplete = 'Please select one item from the list';
 const warningEmpty = 'Please do not leave this question unanswered';
-const warningAge = 'Please provide a valid answer (number from 16 to 40). Do not include any letters :D';
+const warningAge = 'Please provide a valid answer (number from 16-20 or 30-40). Do not include any letters :D';
 const warningNum = 'Please provide a valid answer (number from 0 to 1200). Do not include any letters :D';
 const warningFollowers = 'Please provide a valid answer (number or x)';
 const warningEmail = 'Please provide a valid email address';
@@ -136,7 +136,7 @@ const firstQuestions = [
     },
     {
         question: "What did you think of the length of this study?",
-        name: "DPilot",
+        name: "Dpilot",
         type: "radio",
         values: [1,2,3,4,5],
         labels: ['Too short','Short','Normal','Long','Too long']
