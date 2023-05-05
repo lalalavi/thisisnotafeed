@@ -21,7 +21,7 @@ class Constants(BaseConstants):
     num_rounds = 20
     df = pd.read_excel("_static/global/HR.xlsx",index_col="Numbers")
     df2 = pd.read_excel("_static/global/LR.xlsx",index_col="Numbers")
-    total_time = 600  # 1200 (20 min) # 600 (10 minutes)
+    total_time = 420 #(7 min)  # 1200 (20 min) # 600 (10 minutes)
     IMG_ON_PAGE = 6
 
 class Subsession(BaseSubsession):

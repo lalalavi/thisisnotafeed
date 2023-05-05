@@ -90,7 +90,7 @@ const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeri
 
 const firstQuestions = [
     {
-        question: "Please provide your email for payment:",
+        question: "Please provide your email. Make sure this email is written correctly as we will need it for payment:",
         name: "Email",
         type: "shortOpen",
         validate: validEmail,
@@ -133,6 +133,13 @@ const firstQuestions = [
         type: "radio",
         values: [1,2,3],
         labels: ['Yes','No',"Not sure / don't remember"]
+    },
+    {
+        question: "What did you think of the length of this study?",
+        name: "DPilot",
+        type: "radio",
+        values: [1,2,3,4,5],
+        labels: ['Too short','Short','Normal','Long','Too long']
     },
     {
         question: "What do you think is the purpose of this study? Describe shortly in your own words.",

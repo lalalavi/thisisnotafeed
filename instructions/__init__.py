@@ -11,7 +11,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     UvA_logo = 'global/UvA_logo.png'
-    FlatFee = "[ NEW AMOUNT ]"
+    FlatFee = "5 euros"
 
     ## Slides for introduction
     SlidePath = 'Instructions/slide'
@@ -39,7 +39,7 @@ class Constants(BaseConstants):
             path=SlidePath+'2.html'
             ),
             dict(
-            Title = 'Emotional status',
+            Title = 'How are you feeling?',
             path=SlidePath+'3.html'
             ),
         dict(

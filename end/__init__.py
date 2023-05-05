@@ -14,7 +14,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
   
-    ProlificLink = "https://app.prolific.co/submissions/complete?cc=3A1CB5ED"
+    QualtricsLink = "https://uva.fra1.qualtrics.com/jfe/form/SV_ctMqvkArgZVmeGy"
     Slides = [
         dict(
             Title = 'This is the end',
