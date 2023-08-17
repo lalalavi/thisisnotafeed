@@ -1,0 +1,130 @@
+
+{% block app_styles %}
+    <link href="{% static 'global/css/VT_functionality.css' %}" rel="stylesheet">
+	<link href="{% static 'global/css/FriendlyChecks.css' %}" rel="stylesheet">
+	<link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet"></script>
+
+<style>
+.debug-info {
+    display:none;
+}
+
+.otree-timer {
+    display: none;
+}
+
+.trucenter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+</style>
+
+{% endblock %}
+
+{% block app_scripts %}
+<script src="{% static 'global/js/VT_functionality.js' %}"></script> 
+<script src="{% static 'global/js/FriendlyChecks.js' %}"></script> 
+
+{% endblock %}
+
+{% block content %}
+
+<div class="trucenter" id="centered">
+	<p style="font-size:25px; text-align: center;">Your feedback </p>
+	<br>
+		<section class="message-list" id="bsl">
+			<section class="message -left">
+				<div class="nes-balloon from-left">
+					<label id="iLikes" value="{{l}}" style="font-size:300%;">{{l}}</label>  <b style="color:red; font-size:300%;"> &#10084;</b> 
+				</div>
+			</section>
+		</section>
+	<br><br><br><br><br>
+
+	<button class="btn btn-primary trucenter" id="end"> Continue </button> 
+
+	<section class="message-list" id="emtl">
+		<section class="message -right">
+			<div class="nes-balloon from-right">
+				<label id="iDislikes" value="{{d}}" style="font-size:300%;"> &nbsp;  </label>  
+			</div>
+		</section>
+	</section>
+	<br><br><br>
+</div>
+
+
+
+<script>
+const bRequireFS    = js_vars.bRequireFS;
+const bCheckFocus   = js_vars.bCheckFocus;
+const defaultPixel  = js_vars.dPixelRatio;
+var TBlur           = new Date().getTime();
+var TFocus          = new Date().getTime();
+
+let l        	= document.createElement("input");
+	l.type       = 'hidden';
+	l.name       = 'iLikes';
+	l.id         = 'iLikes';
+	l.value      = "{{l}}";
+
+let d        = document.createElement("input");
+	d.type       = 'hidden';
+	d.name       = 'iDislikes';
+	d.id         = 'iDislikes';
+	d.value      = "{{d}}";
+
+let dRT          = document.createElement("input");
+	dRT.type         = 'hidden';
+	dRT.name         = 'dRTFeedback';
+	dRT.id           = 'dRTFeedback';
+	dRT.value        = '';
+
+var TStart       = new Date().getTime();
+var TEnd         = new Date().getTime();
+
+treatment = js_vars.treatment // Load Treatment
+
+// When page is loaded
+document.addEventListener("DOMContentLoaded", function() {
+	console.log('Loading info');
+	console.log(treatment);
+
+    let body = document.getElementById('game-container');
+	let fullbody = document.getElementById('centered');
+	InitializeFriendlyChecks(fullbody, bRequireFS, bCheckFocus);
+
+	// END FUNCTION: LOCAL COUNTERS WRITTEN IN THE DATABASE
+    let post = document.getElementById("end");
+    post.addEventListener("click", function(event) {
+		TEnd      = new Date().getTime();
+    	dRT.value = +TEnd -TStart;
+        console.log('End button was pressed');
+    });
+
+	let x = document.getElementById('emtl');
+	let c = document.getElementById('bsl');
+	if (js_vars.treatment=='Control') {
+		x.style.visibility = 'hidden';  //for control treatment we don't show amount of dislikes
+	// } else if (js_vars.treatment=='Emotional') { 
+	// 	c.style.visibility = 'hidden';  //for emotional treatment we don't show the amount of likes
+	// } else {
+	// 	x.style.visibility = 'visible';
+	// 	c.style.visibility = 'visible';
+	};   	
+
+    let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
+    OtreeBody.appendChild(dRT);
+	OtreeBody.appendChild(l); 				// append likes
+	OtreeBody.appendChild(d); 				// apend dislikes
+
+ });
+</script>
+
+
+{% endblock %}
+

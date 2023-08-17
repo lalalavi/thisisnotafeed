@@ -1,0 +1,266 @@
+{% extends "global/Page.html" %}
+{% load otree static %} 
+
+{% block title %}
+    Select a meme by pressing a button
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="fullbody" id="fullbody">
+  <div class="row">
+      <div class="column">
+        <div class="polaroid" >
+          <img id='memeshown1' src= {{ static Image }} value="1" style="width:100%">
+          <div class="container">
+            <p style=font-size:30pt;> <button type="button" class='video-game-button' onclick="animateButtons(this.id)" id="post-1">1</button> </p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="polaroid">
+          <img id='memeshown2' src= {{ static Image2 }} value="2" style="width:100%">
+          <div class="container">
+            <p style=font-size:30pt;> <button type="button" class='video-game-button' onclick="animateButtons(this.id)" id="post-2">2</button> </p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="polaroid">
+          <img id='memeshown3' src= {{ static Image3 }} value="3" style="width:100%">
+          <div class="container">
+          <p style=font-size:30pt;> <button type="button" class='video-game-button' onclick="animateButtons(this.id)" id="post-3">3</button> </p>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="column">
+        <div class="polaroid">
+          <img id='memeshown4' src= {{ static Image4 }}  value="4" style="width:100%">
+          <div class="container">
+            <p style=font-size:30pt;><button type="button" class='video-game-button' onclick="animateButtons(this.id)" id="post-4">4</button></p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="polaroid">
+          <img id='memeshown5' src= {{ static Image5 }}  value="5" style="width:100%">
+          <div class="container">
+            <p style=font-size:30pt;> <button type="button" class='video-game-button' onclick="animateButtons(this.id)" id="post-5">5</button></p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="polaroid">
+          <img id='memeshown6' src= {{ static Image6 }}  value="6" style="width:100%">
+          <div class="container">
+             <p style=font-size:30pt;><button type="button" class='video-game-button' onclick="animateButtons(this.id)" id="post-6">6</button></p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+{% block app_styles %}
+    <link href="{% static 'global/css/FriendlyChecks.css' %}" rel="stylesheet">
+{% endblock %}
+ 
+ 
+<style>
+
+.fullbody {
+    /* position: absolute; */
+    /* transform: translate(-50%, -50%); */
+    width: 67vw;
+    height: 100vh;
+    /* bottom:100%; */
+    /* top: 50vh; */
+    background-color: white;
+    /* z-index: -1; */
+}
+/* style="width:120%; float: center;" */
+
+.video-game-button {
+    text-shadow: 1px 1px pink, -1px -1px maroon;
+  
+    line-height: 1.5em;
+    text-align: center;
+    display: inline-block;
+    width: 1.5em;
+    -webkit-border-radius: .75em;
+    -moz-border-radius: .75em;
+    -o-border-radius: .75em;
+      border-radius: .75em;
+    background-color: red;
+    -webkit-box-shadow:  0 .2em maroon;
+    -moz-box-shadow:  0 .2em maroon;
+    -o-box-shadow:  0 .2em maroon;
+    box-shadow:  0 .2em maroon;
+    color: red;
+    margin: 5px;
+    background-color: red;
+    background-image: -o-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    background-image: -moz-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    background-image: -webkit-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    background-image: linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+    cursor: pointer;
+    padding-left: 5px;
+  }
+  
+.start-btn{
+      text-align: center;
+    display: inline-block;
+    margin:5px;
+    width: 210px;
+    height: 80px;
+    font-weight: bold;
+    padding: 10px 0 10px 10px ;
+    background-color: lightgray;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: gray;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+      box-shadow: 0 .2em gray; 
+      cursor: pointer;
+  
+  }
+
+  .video-game-button:active, .start-btn:active {
+    box-shadow: none;
+    position: relative;
+    top: .2em;
+  }
+
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+    float: left;
+    width: 31.33%;
+    padding: 5px;
+  } 
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+    }
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 31.33%;
+  padding: 3px;
+}
+
+body {margin-left:0px;margin-right:5px}
+
+div.polaroid {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  padding: 2px;
+}
+
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.otree-timer {
+    display: none;
+}
+
+.debug-info {
+    display:none;
+}
+</style>
+
+<script src="{% static 'global/js/FriendlyChecks.js' %}"></script> 
+
+<script> 
+const bRequireFS    = js_vars.bRequireFS;
+const bCheckFocus   = js_vars.bCheckFocus;
+const defaultPixel  = js_vars.dPixelRatio;
+var TBlur           = new Date().getTime();
+var TFocus          = new Date().getTime();
+var TStart       = new Date().getTime();
+var TEnd         = new Date().getTime();
+
+// Hidden Next Button
+let EndButton               = document.createElement('button');
+EndButton.style.visibility  = 'hidden';
+EndButton.className         = 'next_button btn btn-primary btn-large';
+
+// Create hidden input (Decision)
+let iPost        = document.createElement("input");
+    iPost.type       = 'hidden';
+    iPost.name       = 'iPost';
+    iPost.id         = 'iPost';
+    iPost.value      = '';
+
+let dRT          = document.createElement("input");
+    dRT.type         = 'hidden';
+    dRT.name         = 'dRTPost';
+    dRT.id           = 'dRTPost';
+    dRT.value        = '';
+    
+
+function animateButtons(id) {
+   // take variables from python into javascript
+  let ImageID = js_vars.ImageID;
+  let ImageID2 = js_vars.Image2ID;
+  let ImageID3 = js_vars.Image3ID;
+  let ImageID4 = js_vars.Image4ID;
+  let ImageID5 = js_vars.Image5ID;
+  let ImageID6 = js_vars.Image6ID;
+
+  lSplit = id.split("-");
+  idName = lSplit[0]; 
+  idNr = lSplit[1];
+  console.log(id);
+  TEnd      = new Date().getTime();
+  dRT.value = +TEnd -TStart;   // end the timer and rewrite the RT value
+
+  if (idNr === '1') {
+    iPost.value = ImageID;
+  } else if (idNr === '2') {
+    iPost.value = ImageID2;
+  } else if (idNr === '3') {
+    iPost.value = ImageID3;
+  } else if (idNr === '4') {
+    iPost.value = ImageID4;
+  } else if (idNr === '5') {
+    iPost.value = ImageID5;
+  } else {
+    iPost.value = ImageID6;
+    // iPost.value = ImageID + [idNr]
+    // iPost.value = js_vars.Image${[i]}ID
+  }
+
+  console.log(idNr + ' was pressed');
+  console.log(iPost.value);
+  EndButton.click();
+} 
+
+document.addEventListener("DOMContentLoaded", function(debug=false) {
+  console.log('Loading info');
+
+  let fullbody = document.getElementById('fullbody');
+  InitializeFriendlyChecks(fullbody, bRequireFS, bCheckFocus);
+
+  let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
+  OtreeBody.appendChild(iPost);
+  OtreeBody.appendChild(dRT);
+  OtreeBody.appendChild(EndButton);
+});
+</script>  
+
+{% endblock %}

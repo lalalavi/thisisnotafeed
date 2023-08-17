@@ -66,7 +66,8 @@ class Player(BasePlayer):
 ###################################################################################################
 
 def creating_session(subsession):
-    for player in subsession.get_players():
+    players = subsession.get_players()
+    for i, player in enumerate(players, start=1):
         p = player.participant
         if player.round_number == 1:
             #between randomization
@@ -89,6 +90,11 @@ def creating_session(subsession):
 
         if player.round_number > 1:
             prev_player = player.in_round(player.round_number - 1)
+
+        # Sanity check to print every 20 players
+        if i % 100 == 0:
+            print("Creating lr for player", i)
+
         
 
 ###################################################################################################
@@ -196,7 +202,26 @@ class Posting(Page):
         else:
             vImages = participant.HRmemematrix 
 
+        # now we need to implement to take only last 10-20 so they are not the same
+        # as in the first HR session 
+
+        # if player.round_number < 10: 
+        #     player.iImgPost1        = vImages[player.round_number + 9][0]
+        #     player.iImgPost2        = vImages[player.round_number + 9][1]
+        #     player.iImgPost3        = vImages[player.round_number + 9][2]
+        #     player.iImgPost4        = vImages[player.round_number + 9][3]
+        #     player.iImgPost5        = vImages[player.round_number + 9][4]
+        #     player.iImgPost6        = vImages[player.round_number + 9][5]
+        # else: 
+        #     player.iImgPost1        = vImages[player.round_number - 1][0]
+        #     player.iImgPost2        = vImages[player.round_number - 1][1]
+        #     player.iImgPost3        = vImages[player.round_number - 1][2]
+        #     player.iImgPost4        = vImages[player.round_number - 1][3]
+        #     player.iImgPost5        = vImages[player.round_number - 1][4]
+        #     player.iImgPost6        = vImages[player.round_number - 1][5]
+
         # choose a random number between 1 and 20, and not the same one
+
         if player.round_number < 20: 
             player.iImgPost1        = vImages[player.round_number - 1][0]
             player.iImgPost2        = vImages[player.round_number - 1][1]

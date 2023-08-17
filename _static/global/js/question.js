@@ -44,11 +44,20 @@ function validEmail(input) {
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regular expression, at least one character before @, at least one character between @ and ., at least one character after .
     return emailRegex.test(input);
-  }
+}
+
+function validFull(fieldValue) {
+    if (fieldValue.trim() === '') {  
+      return false;   // Field is empty
+    } else {
+      return true;     // Field has input
+
+    }
+}
 
 function validAge(str) {
     num = parseInt(str);
-    return !isNaN(num) && (num>=16 && num<= 20) && (num>=30 && num<= 40);
+    return !isNaN(num) && ((num>=16 && num<= 20) || (num>=30 && num<= 40));
 }
 
 // there was an error in Alejandro's code because
@@ -87,6 +96,13 @@ const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeri
 // *********************************************************************
 // Add Your Questions here
 // *********************************************************************
+
+// question: "Please write down your ProlificID",
+// name: "Prolific",
+// type: "shortOpen",
+// validate: validFull, 
+// invalidMessage: warningEmpty,
+
 
 const firstQuestions = [
     {

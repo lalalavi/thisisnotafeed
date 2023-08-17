@@ -16,13 +16,14 @@ doc = """
 """
 
 class Constants(BaseConstants):
-    name_in_url = 'exp1'
+    name_in_url = 'trial_posting'
     players_per_group = None
-    num_rounds = 20
+    num_rounds = 4
     df = pd.read_excel("_static/global/HR.xlsx",index_col="Numbers")
     df2 = pd.read_excel("_static/global/LR.xlsx",index_col="Numbers")
-    total_time = 420 #(7 min)  # 1200 (20 min) # 600 (10 minutes)
+    total_time = 420 #(7min) 120 #(2 min)
     IMG_ON_PAGE = 6
+
 
 class Subsession(BaseSubsession):
     pass
@@ -44,7 +45,7 @@ class Player(BasePlayer):
     iFeedLikes              = models.IntegerField(blank=True)
     iFeedDislikes           = models.IntegerField(blank=True)
     iPost                   = models.IntegerField(blank=True)       # the meme they choose during posting
-    
+
     ## Meme information Variables
     iLikes                  = models.IntegerField(blank=True)
     iDislikes               = models.IntegerField(blank=True)
@@ -66,7 +67,8 @@ class Player(BasePlayer):
 ###################################################################################################
 
 def creating_session(subsession):
-    for player in subsession.get_players():
+    players = subsession.get_players()
+    for i, player in enumerate(players, start=1):
         p = player.participant
         if player.round_number == 1:
             #between randomization
@@ -77,19 +79,24 @@ def creating_session(subsession):
             LRmemelist = os.listdir('_static/LR')[1:-1] 
             LRnumbers = [int(re.match(pattern, x).group("number")) for x in LRmemelist]  # take all of the numbers from the image files and put them on a list
             LRnumbers = random.sample(LRnumbers, len(LRnumbers))        #shuffle so order is not the same across participants
-            LRnumbers = [LRnumbers[n-Constants.IMG_ON_PAGE:n] for n in range(Constants.IMG_ON_PAGE,len(LRnumbers), Constants.IMG_ON_PAGE)]
-            p.LRmemematrix = LRnumbers
+            LRnumbers = [LRnumbers[n-Constants.IMG_ON_PAGE:n] for n in range(Constants.IMG_ON_PAGE, Constants.IMG_ON_PAGE * 5, Constants.IMG_ON_PAGE)] #change the middle part of the range to specify how many times 
+            p.LRexplore2 = LRnumbers
             HRmemelist = os.listdir('_static/HR')[1:-1] 
             HRnumbers = [int(re.match(pattern, x).group("number")) for x in HRmemelist]  # take all of the numbers from the image files and put them on a list
             HRnumbers = random.sample(HRnumbers, len(HRnumbers))
-            HRnumbers = [HRnumbers[n-Constants.IMG_ON_PAGE:n] for n in range(Constants.IMG_ON_PAGE,len(HRnumbers), Constants.IMG_ON_PAGE)]                
-            p.HRmemematrix = HRnumbers
+            HRnumbers = [HRnumbers[n-Constants.IMG_ON_PAGE:n] for n in range(Constants.IMG_ON_PAGE, Constants.IMG_ON_PAGE * 5, Constants.IMG_ON_PAGE)]                
+            p.HRexplore2 = HRnumbers
         
         player.sTreatment = p.sTreatment
 
         if player.round_number > 1:
             prev_player = player.in_round(player.round_number - 1)
         
+        # Sanity check to print every 20 players
+        if i % 100 == 0:
+            print("Creating explore for player", i)
+
+
 
 ###################################################################################################
 #  Pages ᕕ(ᐛ)ᕗ
@@ -197,30 +204,11 @@ class Posting(Page):
         participant = player.participant
         
         if player.sReward == 'LR':
-            vImages = participant.LRmemematrix 
+            vImages = participant.LRexplore2 
         else:
-            vImages = participant.HRmemematrix 
+            vImages = participant.HRexplore2
 
-        
-        # now we need to implement to take only last 10-20 so they are not the same
-        # as in the first HR session 
-
-        # if player.round_number < 10: 
-        #     player.iImgPost1        = vImages[player.round_number + 9][0]
-        #     player.iImgPost2        = vImages[player.round_number + 9][1]
-        #     player.iImgPost3        = vImages[player.round_number + 9][2]
-        #     player.iImgPost4        = vImages[player.round_number + 9][3]
-        #     player.iImgPost5        = vImages[player.round_number + 9][4]
-        #     player.iImgPost6        = vImages[player.round_number + 9][5]
-        # else: 
-        #     player.iImgPost1        = vImages[player.round_number - 1][0]
-        #     player.iImgPost2        = vImages[player.round_number - 1][1]
-        #     player.iImgPost3        = vImages[player.round_number - 1][2]
-        #     player.iImgPost4        = vImages[player.round_number - 1][3]
-        #     player.iImgPost5        = vImages[player.round_number - 1][4]
-        #     player.iImgPost6        = vImages[player.round_number - 1][5]
-
-        # # choose a random number between 1 and 20, and not the same one
+        # choose a random number between 1 and 20, and not the same one
         if player.round_number < 20: 
             player.iImgPost1        = vImages[player.round_number - 1][0]
             player.iImgPost2        = vImages[player.round_number - 1][1]

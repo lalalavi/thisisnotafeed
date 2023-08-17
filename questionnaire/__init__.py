@@ -22,6 +22,7 @@ class Player(BasePlayer):
     dRTEmotionalStatus = models.FloatField(blank=True)
 
     # Variables for Demographics
+    # Prolific = models.StringField(blank=True)
     Email = models.StringField()
 
     D1 = models.StringField()
@@ -88,7 +89,7 @@ class Questionnaire(Page):
     'CIUS1', 'CIUS2', 'CIUS3', 'CIUS4', 'CIUS5', 'CIUS6', 'CIUS7', 'CIUS8', 'CIUS9', 'CIUS10', 'CIUS11', 'CIUS12', 'CIUS13',
     'IAS1', 'IAS2', 'IAS3',
     'V1', 'V2', 'V3',
-    ]
+    ]  # Email # Prolific
 
     @staticmethod
     def before_next_page(player, timeout_happened):

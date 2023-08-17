@@ -1,11 +1,13 @@
 from os import environ
 
+# could change to more demo participants? 
+
 SESSION_CONFIGS = [
     dict(
-        name='Full_Experiment',
-        display_name="The full thing! :D",
-        num_demo_participants=50, 
-        app_sequence=['instructions', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+        name='1k',
+        display_name="2k lets GO",
+        num_demo_participants=2000, 
+        app_sequence=['instructions', 'explore_feed', 'explore_post', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
         bRequireFS=True,
         bCheckFocus=True,
         doc="""
@@ -14,19 +16,86 @@ SESSION_CONFIGS = [
         """
         ),
     dict(
-        name='emotion',
-        display_name="emotion stuff",
-        num_demo_participants=20, 
-        app_sequence=['emo1'],
+        name='40',
+        display_name="40 people room",
+        num_demo_participants=40, 
+        app_sequence=['instructions', 'explore_feed', 'explore_post', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+        bRequireFS=True,
+        bCheckFocus=True,
+        doc="""
+        bRequireFS: bool, require fullscreen.
+        bCheckFocus: bool, require checking if page is active.
+        """
         ),
     dict(
-        name='debug_experiment',
-        display_name="debugging that experiment yall",
-        num_demo_participants=10, 
-        app_sequence=['hr'],
-        bRequireFS=False,
-        bCheckFocus=False,
-    ),
+        name='100',
+        display_name="100 peopllllle :D",
+        num_demo_participants=100, 
+        app_sequence=['instructions', 'explore_feed', 'explore_post', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+        bRequireFS=True,
+        bCheckFocus=True,
+        doc="""
+        bRequireFS: bool, require fullscreen.
+        bCheckFocus: bool, require checking if page is active.
+        """
+        ),
+]
+
+
+    # dict(
+    #     name='Formatting_the_questionnaire',
+    #     display_name="Only the questionnaire",
+    #     num_demo_participants= 4,
+    #     app_sequence=['questionnaire'],
+    #     bRequireFS=True,
+    #     bCheckFocus=True,
+    #     ),
+    # dict(
+    #     name='End',
+    #     display_name="End",
+    #     num_demo_participants= 4,
+    #     app_sequence=['end'],
+    #     bRequireFS=True,
+    #     bCheckFocus=True,
+    # ),
+#     dict(
+#         name='250',
+#         display_name="250 people room",
+#         num_demo_participants=250, 
+#         app_sequence=['instructions', 'explore', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+#         bRequireFS=True,
+#         bCheckFocus=True,
+#         doc="""
+#         bRequireFS: bool, require fullscreen.
+#         bCheckFocus: bool, require checking if page is active.
+#         """
+#         ),
+#     dict(
+#         name='300',
+#         display_name="300 people room",
+#         num_demo_participants=300, 
+#         app_sequence=['instructions', 'explore', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+#         bRequireFS=True,
+#         bCheckFocus=True,
+#         doc="""
+#         bRequireFS: bool, require fullscreen.
+#         bCheckFocus: bool, require checking if page is active.
+#         """
+#         ),
+#     dict(
+#         name='emotion',
+#         display_name="emotion stuff",
+#         num_demo_participants=20, 
+#         app_sequence=['emo1'],
+#         ),
+#     dict(
+#         name='debug_experiment',
+#         display_name="debugging that experiment yall",
+#         num_demo_participants=10, 
+#         app_sequence=['hr'],
+#         bRequireFS=False,
+#         bCheckFocus=False,
+#     ),
     # dict(
     #     name='Beta_Instructions',
     #     display_name="Only the instructions",
@@ -35,23 +104,7 @@ SESSION_CONFIGS = [
     #     bRequireFS=True,
     #     bCheckFocus=True,
     # ),
-    dict(
-        name='Formatting_the_questionnaire',
-        display_name="Only the questionnaire",
-        num_demo_participants= 4,
-        app_sequence=['questionnaire'],
-        bRequireFS=True,
-        bCheckFocus=True,
-    ),
-    #    dict(
-    #     name='End',
-    #     display_name="End",
-    #     num_demo_participants= 4,
-    #     app_sequence=['end'],
-    #     bRequireFS=True,
-    #     bCheckFocus=True,
-    # ),
-]
+
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -69,6 +122,10 @@ SESSION_CONFIG_DEFAULTS = dict(
 PARTICIPANT_FIELDS = ['dExpiry', 
     'LRmemematrix', 
     'HRmemematrix', 
+    'HRexplore',
+    'HRexplore2',
+    'LRexplore',
+    'LRexplore2',
     'startTime',
     'TotalTime',
     'ProlificID',
