@@ -97,20 +97,19 @@ const countries = ["My country is not listed", "Afghanistan", "Albania", "Algeri
 // Add Your Questions here
 // *********************************************************************
 
-// question: "Please write down your ProlificID",
-// name: "Prolific",
+// question: "Please provide your email. Make sure this email is written correctly as we will need it for payment:",
+// name: "Email",
 // type: "shortOpen",
-// validate: validFull, 
-// invalidMessage: warningEmpty,
-
+// validate: validEmail,
+// invalidMessage: warningEmail,
 
 const firstQuestions = [
     {
-        question: "Please provide your email. Make sure this email is written correctly as we will need it for payment:",
-        name: "Email",
+        question: "Please write down your ProlificID",
+        name: "Prolific",
         type: "shortOpen",
-        validate: validEmail,
-        invalidMessage: warningEmail,
+        validate: validFull, 
+        invalidMessage: warningEmpty,
     }, 
     {
         question: "What is your age?",

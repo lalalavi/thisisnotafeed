@@ -11,7 +11,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     UvA_logo = 'global/UvA_logo.png'
-    FlatFee = "5$  Amazon voucher (or the equivalent amount in your country's currency)" #"flat fee of £3-4" #5$ Amazon voucher
+    FlatFee = "flat fee of £3.75" #"flat fee of £3-4" #5$ Amazon voucher (or the equivalent amount in your country's currency)
 
     ## Slides for introduction
     SlidePath = 'Instructions/slide'

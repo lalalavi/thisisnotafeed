@@ -16,9 +16,21 @@ SESSION_CONFIGS = [
         """
         ),
     dict(
-        name='40',
-        display_name="40 people room",
-        num_demo_participants=40, 
+        name='seiscientos',
+        display_name="600",
+        num_demo_participants=600, 
+        app_sequence=['instructions', 'explore_feed', 'explore_post', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+        bRequireFS=True,
+        bCheckFocus=True,
+        doc="""
+        bRequireFS: bool, require fullscreen.
+        bCheckFocus: bool, require checking if page is active.
+        """
+        ),
+    dict(
+        name='milquinientos',
+        display_name="1.5k",
+        num_demo_participants=1500, 
         app_sequence=['instructions', 'explore_feed', 'explore_post', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
         bRequireFS=True,
         bCheckFocus=True,
@@ -32,6 +44,18 @@ SESSION_CONFIGS = [
         display_name="100 peopllllle :D",
         num_demo_participants=100, 
         app_sequence=['instructions', 'explore_feed', 'explore_post', 'hr', 'emo1', 'lr', 'questionnaire', 'end'],
+        bRequireFS=True,
+        bCheckFocus=True,
+        doc="""
+        bRequireFS: bool, require fullscreen.
+        bCheckFocus: bool, require checking if page is active.
+        """
+        ),
+    dict(
+        name='10',
+        display_name="end",
+        num_demo_participants=10, 
+        app_sequence=['end'],
         bRequireFS=True,
         bCheckFocus=True,
         doc="""
