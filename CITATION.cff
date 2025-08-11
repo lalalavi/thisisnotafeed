@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this experimental platform, please cite it as below."
+title: "This is not a feed"
+authors:
+  - family-names: "Céspedes"
+    given-names: "V."
+  - family-names: "Pinho"
+    given-names: "A."
+date-released: 2025-08-01
+version: "1.0.0"
+url: "https://osf.io/6f92w"
+doi: "10.17605/OSF.IO/6F92W"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Céspedes"
+      given-names: "V."
+    - family-names: "Pinho"
+      given-names: "A."
+  title: "This is not a feed"
+  year: 2025
+  month: 8
+  day: 1
+  url: "https://osf.io/6f92w"
+  doi: "10.17605/OSF.IO/6F92W"

@@ -1,6 +1,12 @@
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
+# This is not a feed, it is a social media simualtor
+
 An **oTree** experiment simulating a social media application environment for behavioral research. Participants interact with a mock feed and posts, allowing researchers to study engagement, attention, and emotional responses in a controlled setting.
+The work is under a GNU GPL v3 license, which means any derivatives created from it need to remain open source.
+
+If you use this code, please cite it as follows:
+Céspedes, V., & Pinho, A. (2025). This is not a feed. https://doi.org/10.17605/OSF.IO/6F92W
 
 
 ## Getting Started
