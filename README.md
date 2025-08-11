@@ -13,8 +13,8 @@ Céspedes, V., & Pinho, A. (2025). This is not a feed. https://doi.org/10.17605/
 
 1. **Clone the repository**  
 ```bash
-git clone https://github.com/lalalavi/sciadv_task.git
-cd sciadv_task
+git clone https://github.com/lalalavi/thisisnotafeed.git
+cd thisisnotafeed
 ```
 2. **Set up a virtual environment**  
 ```bash
